@@ -1,0 +1,11 @@
+---
+import { Toaster } from "sonner";
+import "sonner/dist/sonner.css";
+import { toastConfig } from "@src/libs/toast/client";
+---
+
+<Toaster
+  position={toastConfig.position}
+  duration={toastConfig.defaultDuration}
+  richColors={toastConfig.richColors}
+/>

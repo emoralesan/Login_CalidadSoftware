@@ -1,0 +1,42 @@
+---
+import "../tailwind.css";
+import Loader from "@components/loaders.astro";
+import { Toaster } from "sonner"; 
+let loaderVisible = false;
+
+Astro.locals.showLoader = () => loaderVisible = true;
+Astro.locals.hideLoader = () => loaderVisible = false;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>DashBoard</title>
+  </head>
+
+  <body class="min-h-screen flex items-center justify-center bg-cover bg-center">
+    <Loader visible={loaderVisible} />
+    
+    <slot />
+    
+      <Toaster 
+      client:load
+      richColors 
+      expand={true}
+      position="bottom-right"
+      closeButton={true}
+      theme="light"
+    />
+    <script>
+      document.addEventListener("loader:show", () => {
+        document.body.classList.add("loading");
+      });
+
+      document.addEventListener("loader:hide", () => {
+        document.body.classList.remove("loading");
+      });
+    </script>
+  </body>
+</html>
